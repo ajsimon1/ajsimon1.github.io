@@ -1,5 +1,5 @@
 [project]
 name = AJSimon Journey
 
-[servers.ghpages-https]
+[servers.ghpages]
 target = ghpages+https://ajsimon1/ajsimon1.github.io

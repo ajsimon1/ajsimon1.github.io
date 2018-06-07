@@ -1,17 +1,43 @@
+/*
+color pallet
+black = #000
+dark blue/teal = #295E78
+orange accent = #BE813A
+lighter blue = #f1fbfe
+
+*/
+
+* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
+header {
+    width: 100%;
+    background-color: #000000;
+    margin: 0 auto;
+    padding: 20px 30px;
+    font-family: 'Palatino'
+}
+
 body {
     font-family: 'Verdana', sans-serif;
-    margin: 50px 25px;
 }
 
 a {
-    color: #2a99b6;
-}
-
-a:hover {
     color: #BE813A;
 }
 
-header, footer, div.page {
+a:hover {
+    color: #295E78;
+}
+
+footer, div.page {
     width: 75%;
     margin: 0 auto;
     background: #295E78;
@@ -19,7 +45,7 @@ header, footer, div.page {
 }
 
 header h1 {
-    color: #169bbd;
+    color: #f1fbfe;
     margin: 0;
     font-weight: normal;
     font-size: 42px;
@@ -35,6 +61,10 @@ header nav ul li {
     display: inline;
     margin: 0 8px 0 0;
     padding: 0;
+}
+
+li.active {
+    color: #ffffff;
 }
 
 div.page {

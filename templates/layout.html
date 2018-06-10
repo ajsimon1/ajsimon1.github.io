@@ -4,26 +4,30 @@
 <title>{% block title %}Welcome{% endblock %} | AJSimon </title>
 <body>
   <header>
-    <h1>A Walk</h1>
-    <nav>
-      <ul class="nav navbar-nav">
-        <li{% if this._path == '/' %} class="active"{% endif
-          %}><a href="{{ '/'|url }}">Welcome</a></li>
-        {% for href, title in [
-          ['/blog', 'Blog'],
-          ['/projects', 'Projects'],
-          ['/about', 'About']
-        ] %}
-          <li{% if this.is_child_of(href) %} class="active"{% endif
-            %}><a href="{{ href|url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
+    <h1>live. learn. repeat.</h1>
   </header>
   <div class="page">
-    {% block body %}{% endblock %}
+    <div class='center-box'>
+      {% block body %}
+      {% endblock %}
+      <nav>
+        <ul class="nav navbar-nav">
+          <li{% if this._path == '/' %} class="active"{% endif
+            %}><a href="{{ '/'|url }}">Welcome</a></li>
+          {% for href, title in [
+            ['/blog', 'Blog'],
+            ['/projects', 'Projects'],
+            ['/about', 'About']
+          ] %}
+            <li{% if this.is_child_of(href) %} class="active"{% endif
+              %}><a href="{{ href|url }}">{{ title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
   </div>
+
   <footer>
-    &copy; Copyright 2018 by Adam J Simon.
+    <p>&copy; Copyright 2018 by Adam J Simon.</p>
   </footer>
 </body>

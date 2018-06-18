@@ -96,7 +96,7 @@ gulp.task('js:minify', function() {
 gulp.task('js', ['js:minify']);
 
 // Default task
-gulp.task('default', ['css', 'js', 'vendor']);
+gulp.task('default', ['css', 'js', 'vendor', 'browserSync']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -105,6 +105,9 @@ gulp.task('browserSync', function() {
       baseDir: "./"
     }
   });
+  gulp.watch('./scss/*.scss', ['css']);
+  gulp.watch('./js/*.js', ['js']);
+  gulp.watch('./*.html', browserSync.reload);
 });
 
 // Dev task

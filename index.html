@@ -1,242 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam Simon</title>
+  <meta name="description" content="Adam Simon — Senior Data Engineer. Builds data pipelines by day and iOS apps for family and friends on the side.">
+  <meta name="author" content="Adam Simon">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adam Simon">
+  <meta property="og:description" content="Senior Data Engineer. Builds data pipelines by day and iOS apps for family and friends on the side.">
+  <meta property="og:url" content="https://ajsimon1.github.io/">
+  <link rel="icon" type="image/png" href="img/ajs_black_75.75.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --ink: #1c1b19;
+      --muted: #5c5a55;
+      --line: #e3dfd6;
+      --accent: #2f6b4f;
+      --accent-soft: #e4efe8;
+      --max: 960px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #141413;
+        --surface: #1d1c1a;
+        --ink: #f1efe9;
+        --muted: #aaa69c;
+        --line: #33312d;
+        --accent: #7fc4a0;
+        --accent-soft: #1f2e26;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #141413;
+      --surface: #1d1c1a;
+      --ink: #f1efe9;
+      --muted: #aaa69c;
+      --line: #33312d;
+      --accent: #7fc4a0;
+      --accent-soft: #1f2e26;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.6 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-  <head>
+    header.top {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .mark { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 20px; color: var(--ink); text-decoration: none; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 15px; margin-left: 22px; }
+    nav a:hover { color: var(--ink); }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    .hero { padding: 96px 0 72px; }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+    h1 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: clamp(40px, 7vw, 64px); line-height: 1.05; margin: 0 0 20px; letter-spacing: -0.01em; }
+    .lede { font-size: clamp(18px, 2.4vw, 21px); color: var(--muted); max-width: 40ch; margin: 0; }
 
-    <title>AJS | Hey...</title>
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 30px; margin: 0 0 24px; }
+    .about p { max-width: 62ch; margin: 0 0 14px; }
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+      padding: 22px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .card h3 { margin: 0; font-size: 18px; font-weight: 600; }
+    .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+    .tag { font-size: 12.5px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 999px; }
+    .card .link { font-size: 14.5px; font-weight: 500; }
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    .earlier { list-style: none; padding: 0; margin: 0; }
+    .earlier li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .earlier li:last-child { border-bottom: 0; }
+    .earlier span { color: var(--muted); font-size: 15px; }
 
-    <!-- Custom styles for this template -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border: 1px solid var(--line); border-radius: 8px;
+      background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  </head>
+    footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .theme-toggle { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; }
 
-  <body id="page-top">
+    @media (max-width: 560px) {
+      nav a { margin-left: 14px; }
+      .hero { padding: 64px 0 48px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="mark" href="#top">AJS</a>
+      <nav aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="./img/ajs_light_75.75.png"></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
+  <main id="top">
+    <div class="wrap hero">
+      <p class="eyebrow">Adam Simon</p>
+      <h1>I build data pipelines, and apps for the people I know.</h1>
+      <p class="lede">Senior Data Engineer. By day I work on the systems that turn raw files into data people can trust. On the side I make small iOS apps for family and friends.</p>
+    </div>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="wrap about">
+        <h2 id="about-h">About</h2>
+        <p>I came to engineering through Python and a master's in Biomedical Sciences with a focus in neuroscience, and stayed for the part where a messy problem turns into something that runs every day without anyone thinking about it.</p>
+        <p>These days that's data engineering: dbt, BigQuery, Airflow, and a lot of questions about why a number changed. I care about pipelines that are correct first and cheap second, and about leaving things easier for whoever comes next.</p>
+        <p>Outside work I build SwiftUI apps for problems my family actually has, like who's bringing which gift and whose book is on whose shelf.</p>
       </div>
-    </nav>
+    </section>
 
-    <!-- Intro Header -->
-    <header class="masthead">
-      <div class="intro-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h1 class="brand-heading">Live. Learn. Repeat.</h1>
-              <p class="intro-text">I like to learn things<br/>I also like to do things</p>
-              <a href="#about" class="btn btn-circle js-scroll-trigger">
-                <i class="fa fa-angle-double-down animated"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="content-section text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h2>About Adam</h2>
-            <p>Adam Simon is a self taught Python aficionado and full time
-            embracer of third person dialogoues</p>
-            <p>He's a recent Masters Graduate and long time searcher of knowledge and truth</p>
-            <p>A lover of science, a believer in the transformative effects of data</p>
-            <!--<p>He can do things like make that period bounce</p>
-            <div class="col-lg-12 mx-auto">
-              <p id="periodBounce">.</p>
-            </div>-->
-          </div>
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="wrap">
+        <h2 id="projects-h">Projects</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>TMC Classic</h3>
+            <p>iOS app for running an annual golf tournament: the field, the pairings and the day itself.</p>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">iOS</span></div>
+            <a class="link" href="https://github.com/ajsimon1/tmc_ios_app">View on GitHub →</a>
+          </article>
+          <article class="card">
+            <h3>Libraries</h3>
+            <p>Catalog your books by scanning the ISBN, share your shelf with family over iCloud, and ask to borrow theirs.</p>
+            <div class="tags"><span class="tag">SwiftUI</span><span class="tag">Core Data</span><span class="tag">CloudKit</span></div>
+            <a class="link" href="https://github.com/ajsimon1/libraries-ios">View on GitHub →</a>
+          </article>
+          <article class="card">
+            <h3>Multi Family Gift List</h3>
+            <p>One shared gift list for several families, so nobody buys the same present twice.</p>
+            <div class="tags"><span class="tag">SwiftUI</span><span class="tag">SwiftData</span><span class="tag">iOS</span></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="download" class="download-section content-section text-center">
-      <div class="container">
-        <div class="col-lg-8 mx-auto">
-          <h2>Projects</h2>
-          <!--<a href="https://github.com/ajsimon1?tab=respositories" class="btn btn-default btn-lg">Visit Github Page</a>-->
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <!--<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>-->
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="https://github.com/ajsimon1/barcode-match-electron" target="_blank">Barcode Match App</a>
-              </h4>
-              <p class="card-text">
-                Simple barcode matching desktop app written for the electron framework.
-                <hr> Languages: Node, HTML, CSS
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="https://github.com/ajsimon1/icd-api-electron" target="_blank">ICD API App</a>
-              </h4>
-              <p class="card-text">
-                Desktop app that pings the NIH library of ICDs.  Written for the
-                elctron framework <hr> Languages: Node, HTML, CSS
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="https://ajsimon1.github.io/nn_project/" target="_blank">Neural Network</a>
-              </h4>
-              <p class="card-text">
-                Computational model of the classical conditioning eyeblink paradigm
-                <hr>Languages: Python
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row" style="margin-top: 15px;">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="https://ajsimon1.github.io/craft-beer-dui-eda/">Craft Beer EDA</a>
-              </h4>
-              <p class="card-text">
-                Exploratory data analysis of a craft beer dataset on <a href="#">kaggle</a>
-                <hr>Languages: Python
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Library Web App</a>
-              </h4>
-              <p class="card-text">
-                Flask web app where users add & share books from other users.
-                <hr>Languages: Python, HTML, CSS, JavaScript
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Alexa Navigation Skill</a>
-              </h4>
-              <p class="card-text">
-                Skill that provides traffic alerts on roads within
-                a coordinate box.
-                <hr>Languages: Python
-              </p>
-            </div>
-          </div>
-        </div>
+    <section aria-labelledby="earlier-h">
+      <div class="wrap">
+        <h2 id="earlier-h">Earlier work</h2>
+        <ul class="earlier">
+          <li><a href="https://ajsimon1.github.io/nn_project/">Neural network model of eyeblink conditioning</a><span>Grad school · Python</span></li>
+          <li><a href="https://ajsimon1.github.io/craft-beer-dui-eda/">Craft beer and DUI data, an exploratory analysis</a><span>Python</span></li>
+          <li><a href="https://github.com/ajsimon1/barcode-match-electron">Barcode matching desktop app</a><span>Electron</span></li>
+        </ul>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Contact Adam</h2>
-            <p>Drop me a line at:
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/adamjsimon1"
-                  class="btn btn-default btn-lg"
-                  target="_blank">
-                  <i class="fa fa-twitter fa-fw"></i>
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/ajsimon1"
-                  class="btn btn-default btn-lg"
-                  target="_blank" >
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/adam.simon.75"
-                  class="btn btn-default btn-lg"
-                  target="_blank" >
-                  <i class="fa fa-facebook fa-fw"></i>
-                  <span class="network-name">Facebook</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <h2 id="contact-h">Contact</h2>
+        <div class="contact-links">
+          <a class="btn" href="mailto:adamjsimon1@yahoo.com">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/adamsimon2/">LinkedIn</a>
+          <a class="btn" href="https://github.com/ajsimon1">GitHub</a>
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- Map Section
-    <div id="map"></div>
-     -->
-    <!-- Footer -->
-    <footer>
-      <div class="container text-center">
-        <p>Copyright &copy; Adam Simon 2018</p>
-      </div>
-    </footer>
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Adam Simon</span>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle light and dark theme">Theme</button>
+    </div>
+  </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery3.1.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/main.js"></script>
-    <script src="js/grayscale.min.js"></script>
-
-  </body>
-
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      var root = document.documentElement, key = 'ajs-theme';
+      try { var saved = localStorage.getItem(key); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+      document.getElementById('themeToggle').addEventListener('click', function () {
+        var dark = root.getAttribute('data-theme') === 'dark' ||
+          (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = dark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem(key, next); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
 </html>

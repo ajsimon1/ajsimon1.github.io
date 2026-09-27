@@ -102,6 +102,9 @@
     .note { padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
     .note p { margin: 0 0 12px; }
     .note p:last-child { margin: 0; }
+    .bullets { margin: 4px 0 16px; padding-left: 20px; }
+    .bullets li { margin: 0 0 10px; font-size: 15px; }
+    .bullets li::marker { color: var(--accent); }
     .note .fine { font-size: 14px; color: var(--dim); }
     .earlier { list-style: none; padding: 0; margin: 0; }
     .earlier li { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
@@ -161,7 +164,7 @@
       <section id="about" aria-label="About">
         <h2 class="label">About</h2>
         <p>I build data pipelines: large <strong>Spark</strong> jobs in <strong>Scala</strong>, <strong>Python</strong> services and tooling, and <strong>SQL</strong> models in <strong>dbt</strong>, orchestrated with <strong>Airflow</strong> on <strong>GCP</strong>.</p>
-        <p>Most of my work is making pipelines correct, cheaper to run and easier to change, including moving legacy systems onto newer ones without breaking what depends on them.</p>
+        <p>Most of my work is making pipelines accurate, cheaper to run and easier to change, including moving legacy systems onto newer ones without breaking what depends on them.</p>
         <p>I came into data management through modeling neurons during a master's in Biomedical Sciences with a focus in neuroscience. Outside work I build iOS apps for my family.</p>
       </section>
 
@@ -169,6 +172,13 @@
         <h2 class="label">Professional</h2>
         <div class="note">
           <p><strong>Production data pipelines.</strong> Spark (Scala), Python and dbt on GCP: BigQuery, Dataproc and Airflow.</p>
+          <ul class="bullets">
+            <li><strong>Migrated legacy Scala/Spark pipelines to dbt on BigQuery,</strong> validated row for row against the legacy output before each cutover.</li>
+            <li><strong>Designed a shared serving-layer pattern</strong> so dozens of downstream pipelines read one pre-partitioned copy of a large upstream table instead of each scanning all of it, cutting that workload's compute cost by about 70%.</li>
+            <li><strong>Built validation into the release path</strong> (write-audit-publish, parity diffs, coverage tests), so data regressions are caught before they reach users.</li>
+            <li><strong>Extended the orchestration layer</strong> (Airflow on Cloud Composer, a generated DAG, Cloud Run), so pipeline dependencies are enforced by the scheduler, not by convention.</li>
+            <li><strong>Owned production data issues end to end,</strong> from raw source files to published tables.</li>
+          </ul>
           <p class="fine">That work belongs to my employers, so the code is proprietary and isn't on my public GitHub. Happy to talk through the approach on a call.</p>
         </div>
       </section>
